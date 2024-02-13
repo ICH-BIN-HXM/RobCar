@@ -1,19 +1,21 @@
 # This document is used for developing with Docker
 
-## delete docker image
+## Basic settings 
+### delete docker image
 [](https://stackoverflow.com/questions/51188657/image-is-being-used-by-stopped-container-error) 
 
-## Get simpliest Docker for Arm64
+### Get simpliest Docker for Arm64
 [Running Ubuntu ARM64 with Docker](https://jkfran.com/running-ubuntu-arm-with-docker/) 
 
 
-## Useful commands 
+### Useful commands 
 ```bash
 docker image ls -a 
 docker rmi <repository_name> 
+docker save -o /home/hxm-ubuntu/Project/RobCar/Docker/image/docker_20240213.tar raspi/ubuntu:latest
 ```
 
-## Trouble Shooting 
+### Trouble Shooting 
 [Failed to connect. Is Docker running? (Vs Code)](https://stackoverflow.com/questions/69530014/failed-to-connect-is-docker-running-vs-code) 
 ```bash
 sudo chmod 666 /var/run/docker.sock
