@@ -1,0 +1,1 @@
+docker run -it -v /home/hxm-ubuntu/Project/RobCar/Docker/shared_volume:/RobCar --platform linux/arm64 raspi/ubuntu
