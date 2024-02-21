@@ -1,0 +1,1 @@
+docker build -t raspi/ubuntu:latest .
