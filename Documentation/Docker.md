@@ -39,3 +39,37 @@ sudo chmod 666 /var/run/docker.sock
 [Install ROS Humble in Docker](https://docs.ros.org/en/humble/Installation/Alternatives/Ubuntu-Development-Setup.html) 
 (Reminder: Remember to delete the `sudo`, [Set Time Zone](https://askubuntu.com/questions/909277/avoiding-user-interaction-with-tzdata-when-installing-certbot-in-a-docker-contai)) 
 
+## ROS Communication 
+### Domain ID
+```bash
+export ROS_DOMAIN_ID=0
+```
+### Trouble Shooting 
+- [See Topics but no data](https://github.com/rosblox/ros-template?tab=readme-ov-file#solution) 
+    - run docker arguments 
+        ```bash
+        --net=host --ipc=host --pid=host
+        ```
+    - same user id of docker and host 
+        - check the user id 
+            ```bash
+            id -u 
+            ```
+        - set user and give the power same as root 
+            ```bash
+            ## Set the UID for the regular user
+            ARG USER_ID=1000
+            ## Add the pi user and set its UID to the specified USER_ID
+            RUN useradd -u $USER_ID -m pi
+            ## Add the pi user to the sudoers file and allow executing sudo commands without password
+            RUN echo 'pi ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+            ## Switch to the pi user
+            USER pi
+            ```
+
+- Give user permission to write log
+    - [ROS2 topics on Docker detected by host but can't subscribe](https://github.com/eProsima/Fast-DDS/issues/2956) 
+        - run docker arguments 
+            ```bash
+            -v '/home/hxm-ubuntu/Project/RobCar/Docker/.ros/log:/home/pi/.ros/log'
+            ```
