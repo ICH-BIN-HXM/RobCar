@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-02-13T23:51:31.735Z" agent="Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="CgnzWFJTHy8nDtqLi_kH" version="23.0.2" type="device">
+<mxfile host="Electron" modified="2024-02-22T20:09:09.200Z" agent="Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="D2yVq8fDC0-TjFTgSf_Q" version="23.0.2" type="device">
   <diagram name="Page-1" id="Vw5gczLZUKuHrn777Z9E">
     <mxGraphModel dx="5805" dy="4113" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
       <root>
@@ -85,21 +85,6 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="sMMD2c3NOCW7n8xG9AOf-28" value="Thread&amp;nbsp;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="560" y="-120" width="280" height="88" as="geometry" />
-        </mxCell>
-        <mxCell id="sMMD2c3NOCW7n8xG9AOf-29" value="Thread[0]: spin()&amp;nbsp;&lt;br&gt;Thread[1]: spin() //For MQTT, TODO&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="sMMD2c3NOCW7n8xG9AOf-28" vertex="1">
-          <mxGeometry y="26" width="280" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="sMMD2c3NOCW7n8xG9AOf-30" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="sMMD2c3NOCW7n8xG9AOf-28" vertex="1">
-          <mxGeometry y="80" width="280" height="8" as="geometry" />
-        </mxCell>
-        <mxCell id="sMMD2c3NOCW7n8xG9AOf-32" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" parent="1" source="sMMD2c3NOCW7n8xG9AOf-2" target="sMMD2c3NOCW7n8xG9AOf-28" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="720" y="-90" as="sourcePoint" />
-            <mxPoint x="770" y="-140" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="sMMD2c3NOCW7n8xG9AOf-36" value="Driver" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="40" y="1079" width="360" height="108" as="geometry" />
         </mxCell>
@@ -121,10 +106,10 @@
         <mxCell id="sMMD2c3NOCW7n8xG9AOf-45" value="+ PIN_1&amp;nbsp;&lt;br&gt;+ PIN_2&amp;nbsp;&lt;br&gt;+ ..." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="sMMD2c3NOCW7n8xG9AOf-42" vertex="1">
           <mxGeometry y="128" width="360" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="sMMD2c3NOCW7n8xG9AOf-47" value="Info_Fusion" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="sMMD2c3NOCW7n8xG9AOf-47" value="Info_Integrator" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="40" y="280" width="360" height="88" as="geometry" />
         </mxCell>
-        <mxCell id="sMMD2c3NOCW7n8xG9AOf-48" value="+ select_info_source() // ROS or MQTT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="sMMD2c3NOCW7n8xG9AOf-47" vertex="1">
+        <mxCell id="sMMD2c3NOCW7n8xG9AOf-48" value="&lt;ul style=&quot;border-color: var(--border-color);&quot;&gt;&lt;li style=&quot;border-color: var(--border-color);&quot;&gt;write_forward_Velocity(source, forward_Velocity)&amp;nbsp;&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color);&quot;&gt;write_yaw_Speed(source, forward_Velocity)&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="sMMD2c3NOCW7n8xG9AOf-47" vertex="1">
           <mxGeometry y="26" width="360" height="54" as="geometry" />
         </mxCell>
         <mxCell id="sMMD2c3NOCW7n8xG9AOf-49" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="sMMD2c3NOCW7n8xG9AOf-47" vertex="1">
