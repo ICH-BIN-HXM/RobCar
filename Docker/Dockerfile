@@ -16,7 +16,8 @@ RUN apt install -y \
     net-tools 
 # python3 
 RUN apt install -y \ 
-    python3 
+    python3 \ 
+    python3-pip
 # ROS2 Humble 
 RUN apt install -y \ 
     software-properties-common
@@ -37,6 +38,9 @@ EXPOSE 11311
 ENV ROS_DOMAIN_ID=0
 ## Setup the environment for ROS (for all users)
 RUN echo "source /opt/ros/humble/setup.bash" >> /etc/bash.bashrc
+
+# setuptools
+RUN pip install setuptools==58.2.0
 
 # User 
 ## Set the UID for the regular user
