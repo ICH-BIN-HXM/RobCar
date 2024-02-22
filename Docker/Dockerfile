@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-WORKDIR /home/user 
+WORKDIR /home/pi
 
 # Time Zone 
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone 
@@ -11,6 +11,9 @@ RUN apt update
 # snap 
 RUN apt install -y \ 
     snapd 
+# net-tools e.g. ifconfig 
+RUN apt install -y \ 
+    net-tools 
 # python3 
 RUN apt install -y \ 
     python3 
@@ -27,7 +30,22 @@ RUN apt upgrade -y
 RUN apt install -y \ 
     ros-humble-desktop \
     ros-dev-tools 
-## Setup the environment for ROS
-RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc 
+
+## Expose 
+EXPOSE 11311
+## Domain iD
+ENV ROS_DOMAIN_ID=0
+## Setup the environment for ROS (for all users)
+RUN echo "source /opt/ros/humble/setup.bash" >> /etc/bash.bashrc
+
+# User 
+## Set the UID for the regular user
+ARG USER_ID=1000
+## Add the pi user and set its UID to the specified USER_ID
+RUN useradd -u $USER_ID -m pi
+## Add the pi user to the sudoers file and allow executing sudo commands without password
+RUN echo 'pi ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+## Switch to the pi user
+USER pi
 
 # RUN rm -rf /var/lib/apt/lists/*
