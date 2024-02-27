@@ -1,5 +1,12 @@
 # This document is used for developing with Docker
 
+## Install Docker 
+[Installing Docker Using the Installation Script](https://kinsta.com/blog/install-docker-ubuntu/#3-installing-docker-using-the-installation-script) 
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
 ## Manage Docker  
 ### Container 
 #### List 
