@@ -1,1 +1,0 @@
-docker run -it --network=host --ipc=host --pid=host -v '/home/hxm-ubuntu/Project/RobCar/Docker/RobCar:/home/pi/RobCar' -v '/home/hxm-ubuntu/Project/RobCar/Docker/.ros/log:/home/pi/.ros/log' --platform linux/arm64 raspi/ubuntu

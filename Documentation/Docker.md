@@ -7,39 +7,25 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-## Manage Docker  
-### Container 
-#### List 
+## Give Docker permission [Failed to connect. Is Docker running? (Vs Code)](https://stackoverflow.com/questions/69530014/failed-to-connect-is-docker-running-vs-code)
 ```bash
-docker container ls -a 
-```
-#### Stop 
-```bash
-docker stop ${CONTAINER_ID}
-```
-#### Delete 
-```bash
-docker rm ${CONTAINER_ID}
-```
-### Image 
-#### List
-```bash
-docker image ls -a 
-```
-#### [Delete](https://stackoverflow.com/questions/51188657/image-is-being-used-by-stopped-container-error) 
-```bash
-docker rmi ${IMAGE_NAME}
-```
-### Backup
-```bash
-docker save -o /home/hxm-ubuntu/Project/RobCar/Docker/image/docker_20240213.tar raspi/ubuntu:latest
-```
-
-## Trouble Shooting 
-[Failed to connect. Is Docker running? (Vs Code)](https://stackoverflow.com/questions/69530014/failed-to-connect-is-docker-running-vs-code) 
-```bash
+sudo usermod -aG docker $USER
 sudo chmod 666 /var/run/docker.sock
 ```
+
+## Enable GUI 
+[Run A GUI APPs inside a Docker Container](https://medium.com/geekculture/run-a-gui-software-inside-a-docker-container-dce61771f9) 
+### replace the package name to fit ubuntu 
+- glibc-source 
+- dbus-x11 
+- packagekit-gtk3-module 
+- libcanberra-gtk-module 
+### edit run command 
+```bash
+-e DISPLAY=$DISPLAY
+-v /tmp/.X11-unix/:/tmp/.X11-unix/
+```
+
 
 ## Dockerfile 
 ### Reference 
@@ -80,3 +66,35 @@ export ROS_DOMAIN_ID=0
             ```bash
             -v '/home/hxm-ubuntu/Project/RobCar/Docker/.ros/log:/home/pi/.ros/log'
             ```
+
+
+## Manage Docker  
+### Container 
+#### List 
+```bash
+docker container ls -a 
+```
+#### Stop 
+```bash
+docker stop ${CONTAINER_ID}
+```
+#### Delete 
+```bash
+docker rm ${CONTAINER_ID}
+```
+### Image 
+#### List
+```bash
+docker image ls -a 
+```
+#### [Delete](https://stackoverflow.com/questions/51188657/image-is-being-used-by-stopped-container-error) 
+```bash
+docker rmi ${IMAGE_NAME}
+```
+### Backup
+```bash
+docker save -o /home/hxm-ubuntu/Project/RobCar/Docker/image/docker_20240213.tar raspi/ubuntu:latest
+```
+
+
+

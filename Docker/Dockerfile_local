@@ -1,6 +1,10 @@
 FROM ubuntu:22.04
 
-WORKDIR /home/pi
+WORKDIR /home/local
+
+# Setting up the default locale to en_US.UTF-8
+# RUN localedef --no-archive -i en_US -f UTF-8 en_US.UTF-8 && \
+#    export LANG=en_US.UTF-8
 
 # Time Zone 
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone 
@@ -18,6 +22,17 @@ RUN apt install -y \
 RUN apt install -y \ 
     python3 \ 
     python3-pip
+# gedit
+RUN apt install -y \ 
+    gedit
+
+# enable GUI 
+RUN apt install -y \ 
+    glibc-source \ 
+    dbus-x11 \ 
+    packagekit-gtk3-module \ 
+    libcanberra-gtk-module 
+
 # ROS2 Humble 
 RUN apt install -y \ 
     software-properties-common
@@ -45,11 +60,11 @@ RUN pip install setuptools==58.2.0
 # User 
 ## Set the UID for the regular user
 ARG USER_ID=1000
-## Add the pi user and set its UID to the specified USER_ID
-RUN useradd -u $USER_ID -m pi
-## Add the pi user to the sudoers file and allow executing sudo commands without password
-RUN echo 'pi ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-## Switch to the pi user
-USER pi
+## Add the local user and set its UID to the specified USER_ID
+RUN useradd -u $USER_ID -m local
+## Add the local user to the sudoers file and allow executing sudo commands without password
+RUN echo 'local ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+## Switch to the local user
+USER local
 
 # RUN rm -rf /var/lib/apt/lists/*
