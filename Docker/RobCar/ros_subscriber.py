@@ -9,16 +9,27 @@ source = int(0)
 class ros_subscriber(Node):
     def __init__(self, _db):
         super().__init__('ros_subscriber')
-        self.subscription = self.create_subscription(
+        
+        # create Subscription
+        self.sub_fw_vel = self.create_subscription(
             Float32,
             '/Control/Translation/forward_Velocity',
             self.callback_fw_vel,
             10)
-        self.subscription  # prevent unused variable warning
+        self.sub_yaw_speed = self.create_subscription(
+            Float32,
+            '/Control/Rotation/yaw_Speed',
+            self.callback_yaw_Speed,
+            10)
         
+        # Data base
         self.db = _db
         
 
     def callback_fw_vel(self, _msg):
-        self.get_logger().info('forward Velocity: "%f"' % _msg.data)
+        # self.get_logger().info('forward Velocity: "%f"' % _msg.data)
         self.db.write_forward_Velocity(source, _msg.data) 
+    def callback_yaw_Speed(self, _msg):
+        # self.get_logger().info('sideward Velocity: "%f"' % _msg.data)
+        self.db.write_yaw_Speed(source, _msg.data) 
+    
