@@ -2,6 +2,5 @@
 
 ## Install GPIO Library
 ```bash
-sudo apt update
-sudo apt-get install rpi.gpio
+pip3 install RPi.GPIO
 ```
