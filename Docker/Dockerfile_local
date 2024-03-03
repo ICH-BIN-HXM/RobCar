@@ -33,6 +33,10 @@ RUN apt install -y \
     packagekit-gtk3-module \ 
     libcanberra-gtk-module 
 
+# Qt
+RUN pip install \
+    pyqt5-tools
+
 # ROS2 Humble 
 RUN apt install -y \ 
     software-properties-common
