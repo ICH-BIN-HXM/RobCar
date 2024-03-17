@@ -1,5 +1,5 @@
 from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QCheckBox, QPushButton
 from PyQt5.QtCore import QTimer, Qt
 
 from Ros_Publisher import Ros_Publisher
@@ -12,21 +12,38 @@ min_fw_vel = - max_fw_vel
 hold_to_fw_vel = 0.05 * abs(max_fw_vel)  # factor: hold for 1 time_unit -> forward velocity will be changed for 5% of max velocity
 
 
-class Control_Panel(QWidget):
+class Control_Panel(QMainWindow):
     def __init__(self):
         super().__init__()
-        # Load static UI
-        self.ui = uic.loadUi("Control_Panel.ui") 
-        self.ui.show()
+        # # Load static UI
+        # self.ui = uic.loadUi("Control_Panel.ui") 
+        # self.ui.show()
         
         
-        ## Button for method to control
-        self.b_cmd_display = self.ui.b_cmd_display 
-        self.b_cmd_keyboard = self.ui.b_cmd_keyboard 
+        # ## Button for method to control
+        # self.b_cmd_display = self.ui.b_cmd_display 
+        # self.b_cmd_keyboard = self.ui.b_cmd_keyboard 
         
-        ## Button on display
-        self.b_forward = self.ui.b_forward
-        self.b_backward = self.ui.b_backward
+        # ## Button on display
+        # self.b_forward = self.ui.b_forward
+        # self.b_backward = self.ui.b_backward
+        
+        self.setGeometry(0, 0, 630, 300)
+        
+        self.b_cmd_display = QCheckBox("Display", self)
+        self.b_cmd_display.setGeometry(120, 20, 90, 20)
+        
+        self.b_cmd_keyboard = QCheckBox("Keyboard", self)
+        self.b_cmd_keyboard.setGeometry(380, 20, 90, 20)
+        
+        self.b_forward = QPushButton("Forward", self)
+        self.b_forward.setGeometry(250, 70, 90, 60)
+        
+        self.b_backward = QPushButton("Backward", self)
+        self.b_backward.setGeometry(250, 160, 90, 60)
+        
+        self.k_forward_pressed = False
+        self.k_backward_pressed = False
         
         ## Key on keyboard
         self.k_forward = Qt.Key.Key_W
@@ -47,8 +64,6 @@ class Control_Panel(QWidget):
         self.b_cmd_display.clicked.connect(self.callback_cmd_display)
         self.b_cmd_keyboard.clicked.connect(self.callback_cmd_keyboard)
         
-
-        
         
         
         
@@ -67,11 +82,11 @@ class Control_Panel(QWidget):
             if self.b_forward.isDown() and not self.b_backward.isDown() :
                 # forward: factor -> 1 
                 self.hold_to_fw_vel = 1 * abs(hold_to_fw_vel)
-                print("forwards!")
+                # print("forwards!")
             elif self.b_backward.isDown() and not self.b_forward.isDown() : 
                 # forward: factor -> -1 
                 self.hold_to_fw_vel = (-1) * abs(hold_to_fw_vel)
-                print("backwards!")
+                # print("backwards!")
             else:
                 print("Don't press forward and backward simultaneously!!!")
                 return
@@ -84,11 +99,11 @@ class Control_Panel(QWidget):
             if self.k_forward_pressed and not self.k_backward_pressed :
                 # forward: factor -> 1 
                 self.hold_to_fw_vel = 1 * abs(hold_to_fw_vel)
-                print("forwards!")
+                # print("forwards!")
             elif self.k_backward_pressed and not self.k_forward_pressed : 
                 # forward: factor -> -1 
                 self.hold_to_fw_vel = (-1) * abs(hold_to_fw_vel)
-                print("backwards!")
+                # print("backwards!")
             else:
                 print("Don't press forward and backward simultaneously!!!")
                 return
@@ -124,11 +139,9 @@ class Control_Panel(QWidget):
         self.ros_pub.publish_ctrl_fw_vel(cmd_fw_vel)
         
     def keyPressEvent(self, event):
-        print("event")
         # Only act, if the method is keyboard
         if self.dp_or_kb == 2:  
-            if event.key() == Qt.Key.Key_W : 
-                print("up pressed!!!")
+            if event.key() == self.k_forward : 
                 self.k_forward_pressed = True
                 self.pressed_cmd_fw_vel()
             if event.key() == self.k_backward:
@@ -200,6 +213,7 @@ class Control_Panel(QWidget):
 def main(args = None):
     app = QApplication([])
     window = Control_Panel()
+    window.show()
     app.exec_()
     rclpy.shutdown()
  	           

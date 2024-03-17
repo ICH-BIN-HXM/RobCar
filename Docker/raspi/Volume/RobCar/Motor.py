@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO 
+import numpy as np
 
 # for GPIO numbering, choose BCM
 GPIO.setmode(GPIO.BCM)
@@ -46,7 +47,7 @@ class Motor:
 
     def control_left_front_Motor(self, _direction, _pwm):
         direction = int(_direction)
-        pwm = float(abs(_pwm))
+        pwm = float(np.clip(abs(_pwm), 0, 100))
         
         if direction == 0 or pwm == 0:
             self.__AIN1.start(100)
@@ -66,7 +67,7 @@ class Motor:
 
     def control_right_front_Motor(self, _direction, _pwm):
         direction = int(_direction)
-        pwm = float(abs(_pwm))
+        pwm = float(np.clip(abs(_pwm), 0 ,100))
         
         if direction == 0 or pwm == 0:
             self.__BIN1.start(100)
