@@ -33,6 +33,10 @@ RUN apt install -y \
 # GPIO
 RUN pip3 install RPi.GPIO
 
+# PyBullet
+RUN pip3 install pybullet
+RUN pip3 install pybullet_data
+
 # ROS2 Humble 
 RUN apt install -y \ 
     software-properties-common
