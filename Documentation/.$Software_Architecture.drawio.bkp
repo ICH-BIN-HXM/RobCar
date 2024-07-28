@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-03-03T21:09:04.772Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="rrqyzC98NP17wYScvBBQ" version="21.6.1" type="device">
+<mxfile host="Electron" modified="2024-07-27T13:29:15.218Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.1 Chrome/112.0.5615.204 Electron/24.6.1 Safari/537.36" etag="2UtLzSPIUc-DlcBucnkU" version="21.6.1" type="device">
   <diagram name="Page-1" id="Vw5gczLZUKuHrn777Z9E">
-    <mxGraphModel dx="795" dy="548" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
+    <mxGraphModel dx="1468" dy="1011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -34,7 +34,7 @@
         <mxCell id="sMMD2c3NOCW7n8xG9AOf-45" value="+ PIN_1&amp;nbsp;&lt;br&gt;+ PIN_2&amp;nbsp;&lt;br&gt;+ ..." style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="sMMD2c3NOCW7n8xG9AOf-42" vertex="1">
           <mxGeometry y="128" width="360" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="sMMD2c3NOCW7n8xG9AOf-50" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" target="FmFMdFOQEuTuhwzpyn7E-13">
+        <mxCell id="sMMD2c3NOCW7n8xG9AOf-50" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="FmFMdFOQEuTuhwzpyn7E-13" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="759.29" y="398" as="sourcePoint" />
             <mxPoint x="759.699999999999" y="518" as="targetPoint" />
@@ -88,17 +88,44 @@
         <mxCell id="g6BlAx9o6CvHAIx33_HW-7" value="read" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="520" y="880" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="e-9lWRUZTkhFfOnNyCCH-4" value="starts" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="e-9lWRUZTkhFfOnNyCCH-4" value="starts" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="430" y="410" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="e-9lWRUZTkhFfOnNyCCH-5" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="sMMD2c3NOCW7n8xG9AOf-52">
+        <mxCell id="e-9lWRUZTkhFfOnNyCCH-5" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="sMMD2c3NOCW7n8xG9AOf-52" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="220" y="630" as="sourcePoint" />
             <mxPoint x="570" y="310" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="e-9lWRUZTkhFfOnNyCCH-6" value="read" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="e-9lWRUZTkhFfOnNyCCH-6" value="has" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="220" y="740" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="44geKnZ1Y-uaZJpbZFjT-1" value="&lt;ul&gt;&lt;li&gt;Parameters&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;TimeStep&amp;nbsp;&lt;/li&gt;&lt;li&gt;speedIncrement&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Interface&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;+ forwards()&amp;nbsp;&lt;/li&gt;&lt;li&gt;+ backwards()&amp;nbsp;&lt;/li&gt;&lt;li&gt;+ turnLeft()&amp;nbsp;&lt;/li&gt;&lt;li&gt;+ turnRight()&amp;nbsp;&lt;/li&gt;&lt;li&gt;+ stop()&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="920" width="440" height="159" as="geometry" />
+        </mxCell>
+        <mxCell id="44geKnZ1Y-uaZJpbZFjT-2" value="Hardware Driver&amp;nbsp;&lt;br&gt;Layer&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="959.5" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="44geKnZ1Y-uaZJpbZFjT-3" value="Hardware&amp;nbsp;&lt;br&gt;Layer&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="1240" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="44geKnZ1Y-uaZJpbZFjT-4" value="&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Components&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;PIN_1&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;PIN_2&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;...&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Interface&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;Control&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;+ control_left_front_Motor(direction, pwm)&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;+ control_left_rear_Motor(direction, pwm)&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;+ control_right_front_Motor(direction, pwm)&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;+ control_right_rear_Motor(direction, pwm)&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;font color=&quot;#000000&quot;&gt;Feedback&amp;nbsp;&lt;/font&gt;&lt;/li&gt;&lt;ul&gt;&lt;li style=&quot;border-color: var(--border-color);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color);&quot; color=&quot;#000000&quot;&gt;+ read_left_front_Motor() : direction, pwm&amp;nbsp;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color);&quot; color=&quot;#000000&quot;&gt;+ read_left_rear_Motor() : direction, pwm&amp;nbsp;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color);&quot; color=&quot;#000000&quot;&gt;+ read_right_front_Motor() : direction, pwm&amp;nbsp;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color);&quot;&gt;&lt;font style=&quot;border-color: var(--border-color);&quot; color=&quot;#000000&quot;&gt;+ read_right_rear_Motor() : direction, pwm&amp;nbsp;&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;/ul&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="1120" width="440" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="44geKnZ1Y-uaZJpbZFjT-5" value="&lt;ul&gt;&lt;li&gt;Parameters&amp;nbsp;&lt;/li&gt;&lt;li&gt;Interface&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;Receive&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;+ getDirection()&amp;nbsp;&lt;/li&gt;&lt;li&gt;+ getGasPedal()&amp;nbsp;&lt;/li&gt;&lt;li&gt;+ getSteeringWheel()&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Control&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;+ setDirection()&amp;nbsp;&lt;/li&gt;&lt;li&gt;+ setGasPedal()&amp;nbsp;&lt;/li&gt;&lt;li&gt;+ setSteeringWheel()&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;/ul&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="640" width="440" height="239" as="geometry" />
+        </mxCell>
+        <mxCell id="44geKnZ1Y-uaZJpbZFjT-6" value="Control &lt;br&gt;Layer" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="719.5" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="44geKnZ1Y-uaZJpbZFjT-8" value="Interface &lt;br&gt;Layer" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="490" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="44geKnZ1Y-uaZJpbZFjT-14" value="ROS&amp;nbsp;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="440" width="440" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="44geKnZ1Y-uaZJpbZFjT-15" value="&lt;ul&gt;&lt;li&gt;Parameters&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;TimeStep&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;Topics&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;Motion / Direction&amp;nbsp;&lt;/li&gt;&lt;li&gt;Motion / GasPedal&amp;nbsp;&lt;/li&gt;&lt;li&gt;Motion / SteeringWheel&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="44geKnZ1Y-uaZJpbZFjT-14">
+          <mxGeometry y="26" width="440" height="134" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
