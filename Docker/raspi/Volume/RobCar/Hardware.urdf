@@ -1,0 +1,152 @@
+<?xml version="1.0" ?>
+<robot name="four_wheel_diff_drive">
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.195 0.128 0.05"/>
+      </geometry>
+      <origin xyz="0 0 0.071"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0025" ixy="0" ixz="0" iyy="0.0025" iyz="0" izz="0.0025"/>
+    </inertial>
+  </link>
+
+  <!-- Left Front Wheel -->
+  <link name="left_front_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.0325" length="0.027"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.0325" length="0.027"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <!-- Left Front Wheel Joint -->
+  <joint name="left_front_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_front_wheel"/>
+    <origin xyz="0.09 0.1 -0.034"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0.5886"/> <!-- 6kgcm = 0.5886Nm -->
+  </joint>
+
+  <!-- Right Front Wheel -->
+  <link name="right_front_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.0325" length="0.027"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.0325" length="0.027"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <!-- Right Front Wheel Joint -->
+  <joint name="right_front_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_front_wheel"/>
+    <origin xyz="0.09 -0.1 -0.034"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0.5886"/> <!-- 6kgcm = 0.5886Nm -->
+  </joint>
+
+  <!-- Left Rear Wheel -->
+  <link name="left_rear_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.0325" length="0.027"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.0325" length="0.027"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <!-- Left Rear Wheel Joint -->
+  <joint name="left_rear_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_rear_wheel"/>
+    <origin xyz="-0.09 0.1 -0.034"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0.5886"/> <!-- 6kgcm = 0.5886Nm -->
+  </joint>
+
+  <!-- Right Rear Wheel -->
+  <link name="right_rear_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="0.0325" length="0.027"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.0325" length="0.027"/>
+      </geometry>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <!-- Right Rear Wheel Joint -->
+  <joint name="right_rear_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_rear_wheel"/>
+    <origin xyz="-0.09 -0.1 -0.034"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0.5886"/> <!-- 6kgcm = 0.5886Nm -->
+  </joint>
+</robot>
