@@ -3,7 +3,7 @@ from Hardware import Hardware
 import pybullet as p
 import time
 
-h = Hardware(freq= 50, flag_simulation= True)
+h = Hardware(time_step= 0.02, flag_simulation= True)
 try:
     h.init()
     
