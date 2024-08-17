@@ -3,6 +3,7 @@ import time
 import numpy as np
 import pybullet_data
 from Parameters import LEFT_FRONT_WHEEL, LEFT_REAR_WHEEL, RIGHT_FRONT_WHEEL, RIGHT_REAR_WHEEL
+from Parameters import flag_simulation, simulation_time_step, control_frequency
 
 # Define motor maximum force
 MAX_FORCE = 0.5886  # 0.5886 Nm = 6 kgcm
@@ -20,7 +21,7 @@ def velocity_to_pwm(velocity):
     return abs(velocity) / MAX_VELOCITY * 100.0
 
 class Hardware:
-    def __init__(self, time_step: float = 0.02, flag_simulation: bool = True):
+    def __init__(self, time_step: float = simulation_time_step, flag_simulation: bool = flag_simulation):
         self.time_step = time_step
         self.flag_simulation = flag_simulation
     
@@ -47,13 +48,13 @@ class Hardware:
             p.setGravity(0, 0, -9.81)
             
             # Set time step
-            p.setTimeStep(self.time_step/100)
+            p.setTimeStep(self.time_step)
     
     def step(self):
         if self.flag_simulation:
-            for counter in range(100):
+            for counter in range(int(control_frequency / self.time_step)):
                 p.stepSimulation()
-            time.sleep(self.time_step)
+                time.sleep(self.time_step)
     
     def close(self):
         if self.flag_simulation:
