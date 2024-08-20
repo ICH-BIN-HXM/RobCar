@@ -1,4 +1,5 @@
 from Hardware_Driver import Hardware_Driver
+from Parameters import control_frequency
 
 import rclpy
 from rclpy.node import Node
@@ -6,6 +7,8 @@ from rclpy.node import Node
 from std_msgs.msg import Int64
 
 import threading
+
+import time
 
 class DataBase:
     def __init__(self):
@@ -104,4 +107,5 @@ class Control:
             else:
                 print("ERROR: Combination of direction and steeringwheel not valid!!!")
                 self.hw_drv.stop()
+            
                 

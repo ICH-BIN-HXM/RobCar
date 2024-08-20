@@ -1,23 +1,39 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QCheckBox, QPushButton, QButtonGroup
 from PyQt5.QtCore import QTimer, Qt
 
-from Command_Publisher import commandPublisher
+from Docker.local.Volume.Remote.Ros_Publisher_backup import Ros_Publisher
 import rclpy
 
-remote_frequency = 20
+import numpy as np
+
+
+time_unit = 100 # [ms] 
+
+max_fw_vel = 0.55 # [m/sec] = 2.7 rad/sec * 2pi * (65mm/2) 
+min_fw_vel = - max_fw_vel
+hold_to_fw_vel = 0.05 * abs(max_fw_vel)  # factor: hold for 1 time_unit -> forward velocity will be changed for 5% of max velocity
+
+max_yaw_speed = 360 # [degree/sec]
+min_yaw_speed = 19 # [degree/sec]
+hold_to_yaw_speed = 0.05 * (max_yaw_speed - min_yaw_speed)
+
 
 class Control_Panel(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        # Timer
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.send_cmd)
-        self.timer.start(remote_frequency)  # Timer fires every 20 milliseconds
+        # get constant 
+        self.max_fw_vel = max_fw_vel
+        self.min_fw_vel = min_fw_vel
+        self.hold_to_fw_vel = hold_to_fw_vel
+        
+        self.max_yaw_speed = max_yaw_speed
+        self.min_yaw_speed = min_yaw_speed
+        self.hold_to_yaw_speed = hold_to_yaw_speed
         
         # ROS
         rclpy.init(args=None)
-        self.cmd_pub = commandPublisher()
+        self.ros_pub = Ros_Publisher()
         
         # set Window size
         self.setGeometry(0, 0, 630, 300)
@@ -65,6 +81,7 @@ class Control_Panel(QMainWindow):
         self.b_right_pressed = False
         
         
+        
         # Key on keyboard
         self.k_forward = Qt.Key.Key_W
         self.k_forward_pressed = False
@@ -77,6 +94,20 @@ class Control_Panel(QMainWindow):
 
         self.k_right = Qt.Key.Key_D
         self.k_right_pressed = False
+
+
+        # Velocity
+        self.cmd_fw_vel = 0
+        self.cmd_yaw_speed = 0
+        
+        # Counter
+        self.counter_fw_bw = 0
+        self.counter_turn = 0
+        
+        # Timer
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.calc_cmd)
+        self.timer.start(time_unit)  # Timer fires every 100 milliseconds
     
     def ini_method_control(self):
         # Method to control:  Display (1) or Keyboard (2)?
@@ -101,7 +132,7 @@ class Control_Panel(QMainWindow):
         elif self.b_cmd_keyboard.isChecked() and self.b_cmd_display.isChecked() :
             self.dp_or_kb = 0
             print("Only 1 method can be chosen!!!")
-            
+    
     # Press
     def keyPressEvent(self, event):
         key = event.key()
@@ -117,7 +148,6 @@ class Control_Panel(QMainWindow):
             
         if key == self.k_right:
             self.k_right_pressed = True
-        
             
     def callback_b_fw_pressed(self):
         self.b_forward_pressed = True
@@ -130,7 +160,7 @@ class Control_Panel(QMainWindow):
     
     def callback_b_right_pressed(self):
         self.b_right_pressed = True
-        
+
     # Release
     def keyReleaseEvent(self, event):
         key = event.key()
@@ -158,68 +188,77 @@ class Control_Panel(QMainWindow):
         
     def callback_b_right_released(self):
         self.b_right_pressed = False
-        
-    def send_cmd(self):
-        direction = 0
-        gas_pedal = 0
-        steering_wheel = 0
+
+
+    def calc_cmd(self):
         if self.dp_or_kb == 1:
             if self.b_forward_pressed and self.b_backward_pressed:
                 print("You cannot press the forward and backward simultaneously!!!")
-                direction = 0
-                gas_pedal = 0
+                self.counter_fw_bw = 0
             elif self.b_forward_pressed and not self.b_backward_pressed:
-                direction = 1 
-                gas_pedal = 1
+                self.counter_fw_bw += 1
             elif not self.b_forward_pressed and self.b_backward_pressed:
-                direction = -1
-                gas_pedal = 1
+                self.counter_fw_bw -= 1
             else :
-                direction = 0
-                gas_pedal = 0
+                self.counter_fw_bw = 0
                 
             if self.b_left_pressed and self.b_right_pressed:
                 print("You cannot press the left and right simultaneously!!!")
-                steering_wheel = 0
+                self.counter_turn = 0
             elif self.b_left_pressed and not self.b_right_pressed:
-                steering_wheel = 1
+                self.counter_turn += 1
             elif not self.b_left_pressed and self.b_right_pressed:
-                steering_wheel = -1
+                self.counter_turn -= 1
             else :
-                steering_wheel = 0
+                self.counter_turn = 0
         
         elif self.dp_or_kb == 2:
             if self.k_forward_pressed and self.k_backward_pressed:
                 print("You cannot press the forward and backward simultaneously!!!")
-                direction = 0
-                gas_pedal = 0
+                self.counter_fw_bw = 0
             elif self.k_forward_pressed and not self.k_backward_pressed:
-                direction = 1 
-                gas_pedal = 1
+                self.counter_fw_bw += 1
             elif not self.k_forward_pressed and self.k_backward_pressed:
-                direction = -1
-                gas_pedal = 1
+                self.counter_fw_bw -= 1
             else :
-                direction = 0
-                gas_pedal = 0
+                self.counter_fw_bw = 0
                 
             if self.k_left_pressed and self.k_right_pressed:
                 print("You cannot press the left and right simultaneously!!!")
-                steering_wheel = 0
+                self.counter_turn = 0
             elif self.k_left_pressed and not self.k_right_pressed:
-                steering_wheel = 1
+                self.counter_turn += 1
             elif not self.k_left_pressed and self.k_right_pressed:
-                steering_wheel = -1
+                self.counter_turn -= 1
             else :
-                steering_wheel = 0
-    
-        # print(direction, gas_pedal, steering_wheel)
-        self.cmd_pub.publish_command_direction(direction)
-        self.cmd_pub.publish_command_gas_pedal(gas_pedal)
-        self.cmd_pub.publish_command_steering_wheel(steering_wheel)
+                self.counter_turn = 0
 
-       
- 
+
+        # limit forward vel
+        self.cmd_fw_vel = np.clip(self.counter_fw_bw * self.hold_to_fw_vel, self.min_fw_vel, self.max_fw_vel) 
+
+        # limit yaw speed
+        if self.counter_turn == 0:
+            self.cmd_yaw_speed = 0
+        
+        elif self.counter_turn >= 0:
+            self.cmd_yaw_speed = np.clip(self.min_yaw_speed + self.counter_turn * self.hold_to_yaw_speed, self.min_yaw_speed, self.max_yaw_speed)
+        
+        elif self.counter_turn < 0:
+            self.cmd_yaw_speed = np.clip(-self.min_yaw_speed + self.counter_turn * self.hold_to_yaw_speed, -self.max_yaw_speed, -self.min_yaw_speed) 
+        
+        self.send_cmd()
+        
+    def send_cmd(self):
+        # print(f"fw_vel:{self.cmd_fw_vel}")
+        self.ros_pub.publish_ctrl_fw_vel(self.cmd_fw_vel)
+        # print(f"yaw_speed:{self.cmd_yaw_speed}")
+        self.ros_pub.publish_ctrl_yaw_speed(self.cmd_yaw_speed)
+        
+        
+    
+            
+        
 def main(args = None):
     app = QApplication([])
     window = Control_Panel()
@@ -236,3 +275,5 @@ def main(args = None):
 
 if __name__ == '__main__':
     main()
+
+    

@@ -54,7 +54,7 @@ class Hardware:
         if self.flag_simulation:
             for counter in range(int(control_frequency / self.time_step)):
                 p.stepSimulation()
-                time.sleep(self.time_step)
+                # time.sleep(self.time_step)
     
     def close(self):
         if self.flag_simulation:

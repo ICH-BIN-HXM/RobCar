@@ -2,7 +2,7 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QCheckBox, QPushButton
 from PyQt5.QtCore import QTimer, Qt
 
-from Ros_Publisher import Ros_Publisher
+from Docker.local.Volume.Remote.Ros_Publisher_backup import Ros_Publisher
 import rclpy
 
 
